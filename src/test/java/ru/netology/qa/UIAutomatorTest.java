@@ -13,6 +13,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.netology.qa.screens.AutomatorPage;
+import org.junit.jupiter.api.Test;
+
 
 public class UIAutomatorTest {
     private AndroidDriver driver;
@@ -42,6 +44,43 @@ public class UIAutomatorTest {
 
         automatorPage = new AutomatorPage(driver);
     }
+
+    @Test
+    public void emptyStringTest() {
+        automatorPage.userInput.isDisplayed();
+        automatorPage.userInput.click();
+        automatorPage.userInput.clear(); // Clear any existing text
+        automatorPage.userInput.sendKeys("");
+
+        automatorPage.buttonChange.isDisplayed();
+        automatorPage.buttonChange.click();
+        automatorPage.userInput.isDisplayed();
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(driver -> automatorPage.text.getText().isEmpty());
+
+        Assertions.assertTrue(automatorPage.text.getText().isEmpty());
+    }
+
+
+    @Test
+    public void openNewActivityTest() {
+        automatorPage.userInput.isDisplayed();
+        automatorPage.userInput.click();
+        automatorPage.userInput.clear(); // Clear any existing text
+        automatorPage.userInput.sendKeys(text);
+
+        automatorPage.buttonActivity.isDisplayed();
+        automatorPage.buttonActivity.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 5); // Wait for up to 5 seconds for the new Activity
+        wait.until(ExpectedConditions.visibilityOf(automatorPage.text));
+
+        automatorPage.text.isDisplayed();
+
+        Assertions.assertEquals(text.trim(), automatorPage.text.getText().trim());
+    }
+
 
 
     @Test

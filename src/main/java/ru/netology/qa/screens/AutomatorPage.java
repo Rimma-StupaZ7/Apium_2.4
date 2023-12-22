@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
+
 public class AutomatorPage {
     @AndroidFindBy(id = "ru.netology.testing.uiautomator:id/userInput")
     public WebElement userInput;
@@ -23,7 +23,7 @@ public class AutomatorPage {
 
     public AutomatorPage(AppiumDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
 }
