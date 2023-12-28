@@ -5,7 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-
+import java.time.Duration;
 
 public class AutomatorPage {
     @AndroidFindBy(id = "ru.netology.testing.uiautomator:id/userInput")
@@ -16,15 +16,14 @@ public class AutomatorPage {
     public WebElement buttonActivity;
     @AndroidFindBy(id = "ru.netology.testing.uiautomator:id/text")
     public WebElement text;
-
+    public WebElement newActivityText;
 
 
     private AppiumDriver driver;
 
     public AutomatorPage(AppiumDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        PageFactory.initElements(driver, this);
     }
-
 }
 

@@ -31,6 +31,7 @@ public class MainScreen {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"C\"]/preceding::XCUIElementTypeStaticText)[last()]")
     public MobileElement resultField;
 
+
     private AppiumDriver driver;
 
     public MainScreen(AppiumDriver driver) {
